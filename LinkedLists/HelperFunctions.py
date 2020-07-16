@@ -61,3 +61,52 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         A_pointer = headB if A_pointer == None else A_pointer.next
         B_pointer = headA if B_pointer == None else B_pointer.next
     return A_pointer
+
+ def removeElements(self, head: ListNode, val: int) -> ListNode:
+     """
+     Removes all nodes with value == val
+     """
+    if(head==None):
+        return head
+    if(head.next==None and head.val==val):
+        return None
+    p1=head
+    while(p1!=None and p1.val==val):
+        p1=p1.next
+    if(p1==None):
+        return None
+    head=p1
+    p2=p1
+    p1=p1.next
+    while(p1!=None):
+        if(p1.val==val):
+            p2.next=p1.next
+            p1=p1.next
+        else:
+            p2=p1
+            p1=p1.next
+    return head
+
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+    """
+    Removes nth node from the end of the linked list in a single pass
+    """
+    t=1
+    p1=head
+    p2=head
+    p3=None
+    if(head.next==None):
+        return None
+    while(p1.next!=None):
+        p1=p1.next
+        t+=1
+        if(t>n):
+            p3=p2
+            p2=p2.next
+            print(p1.val,p2.val,p3.val)
+    if(p3!=None):
+        p3.next=p2.next
+    else:
+        p3=p2.next
+        head=p3
+    return head
