@@ -110,3 +110,32 @@ def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         p3=p2.next
         head=p3
     return head
+
+def oddEvenList(self, head: ListNode) -> ListNode:
+    heven=None
+    hodd=None
+    ceven=None
+    codd=None
+    p1=head
+    if(head==None or head.next==None):
+        return head
+    n=3
+    hodd=head
+    codd=head
+    p1=p1.next
+    heven=p1
+    ceven=p1
+    p1=p1.next
+    while(p1!=None):
+        if(n%2==1):
+            codd.next=p1
+            codd=p1
+        else:
+            ceven.next=p1
+            ceven=p1
+        p1=p1.next
+        n+=1
+    codd.next=heven
+    ceven.next=None
+    head=hodd
+    return head
