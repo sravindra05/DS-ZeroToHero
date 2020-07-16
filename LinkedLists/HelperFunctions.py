@@ -139,3 +139,43 @@ def oddEvenList(self, head: ListNode) -> ListNode:
     ceven.next=None
     head=hodd
     return head
+
+def oddEvenListVal(self, head: ListNode) -> ListNode:
+    heven=None
+    hodd=None
+    ceven=None
+    codd=None
+    p1=head
+    if(head==None or head.next==None):
+        return head
+    while(p1!=None and p1.val%2==1):
+        p1=p1.next
+    if(p1==None):
+        return head
+    if(p1!=head):
+        hodd=head
+        codd=hodd
+        heven=p1
+        ceven=p1
+    else:
+        while(p1!=None and p1.val%2==0):
+            p1=p1.next
+        if(p1==None):
+            return head
+        heven=head
+        ceven=heven
+        hodd=p1
+        codd=p1
+    p1=p1.next
+    while(p1!=None):
+        if(p1.val%2==1):
+            codd.next=p1
+            codd=p1
+        else:
+            ceven.next=p1
+            ceven=p1
+        p1=p1.next
+    codd.next=heven
+    ceven.next=None
+    head=hodd
+    return head
