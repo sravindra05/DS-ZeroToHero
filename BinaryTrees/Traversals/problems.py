@@ -98,3 +98,18 @@ class Solution:
                 curr = curr.next
 
         return root
+
+     def isValidBST(self, root: TreeNode) -> bool:
+        if(root==None):
+            return True
+        def helper(node,l,u):
+            if(node==None):
+                return True
+            if(node.val<=l or node.val>=u):
+                return False
+            if not helper(node.left,l,node.val):
+                return False
+            if not helper(node.right,node.val,u):
+                return False
+            return True
+        return helper(root,float('-inf'),float('inf'))
